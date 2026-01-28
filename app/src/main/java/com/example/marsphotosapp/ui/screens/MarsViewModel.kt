@@ -15,6 +15,7 @@ import com.example.marsphotosapp.data.NetworkMarsPhotosRepository
 import com.example.marsphotosapp.network.MarsApiService
 //import com.example.marsphotosapp.network.MarsApi
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.io.IOException
 
 sealed interface MarsUiState {
@@ -38,16 +39,17 @@ class MarsViewModel(
 
     fun getMarsPhotos() {
         viewModelScope.launch {
-
-            try {
-
-                val listResult =marsPhotosRepository.getMarsPhotos()
-                marsUiState = MarsUiState.Success( "Success: ${listResult.size} Mars photos retrieved")
+            marsUiState = MarsUiState.Loading
+            marsUiState = try {
+                val listResult = marsPhotosRepository.getMarsPhotos()
+                MarsUiState.Success(
+                    "Success: ${listResult.size} Mars photos retrieved"
+                )
             } catch (e: IOException) {
-                    marsUiState=MarsUiState.Error
-
+                MarsUiState.Error
+            } catch (e: HttpException) {
+                MarsUiState.Error
             }
-
         }
     }
     companion object {

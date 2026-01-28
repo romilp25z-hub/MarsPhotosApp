@@ -20,6 +20,7 @@ import com.example.marsphotosapp.R
 import com.example.marsphotosapp.ui.screens.HomeScreen
 import com.example.marsphotosapp.ui.screens.MarsViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MarsPhotosApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
