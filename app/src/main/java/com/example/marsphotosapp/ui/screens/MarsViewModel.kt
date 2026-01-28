@@ -6,7 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.marsphotosapp.data.NetworkMarsPhotosRepository
-import com.example.marsphotosapp.network.MarsApi
+import com.example.marsphotosapp.network.MarsApiService
+//import com.example.marsphotosapp.network.MarsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
